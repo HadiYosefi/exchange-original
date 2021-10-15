@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { AssignBlockchainToCryptoDto } from "../dto/assign-blockchain-to-crypto.dto";
@@ -28,9 +28,12 @@ export class BlockchainService{
 
     async deleteBlockchain(id:string):Promise<void>
     {
-        const findBlockchain=await this.blockchainRepository.findOne(id)
-        if (findBlockchain)
-        findBlockchain.deleted=true
+        const blockchain=await this.blockchainRepository.findOne({where:{id:id,deleted:false}})
+        if(!blockchain)
+        throw new BadRequestException('There is no blockchain or aleardy deleted')
+        blockchain.deleted=true
+        const saved_blockchain=this.blockchainRepository.save(blockchain)
+        return
 
     }
 

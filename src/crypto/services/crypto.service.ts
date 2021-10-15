@@ -32,7 +32,7 @@ export class CryptoService{
 
     async getAllCrypto():Promise<Crypto[]>
     {
-        return this.cryptoRepository.find()
+        return this.cryptoRepository.find({where:{deleted:false},relations:['obj_blockchain,obj_crypto_pricing,obj_crypto_appearance,obj_crypto_limit']})
     }
 
 
@@ -96,5 +96,15 @@ export class CryptoService{
         crypto.obj_crypto_limit=cryptoLimit
         const saved_limit=this.cryptoRepository.save(crypto)
         return saved_limit
+    }
+
+    async deleteCrypto(id:string):Promise<void>
+    {
+        const crypto=await this.cryptoRepository.findOne({where:{id:id,deleted:false}})
+        if(!crypto)
+        throw new BadRequestException('there is no crypto or aleardy deleted')
+        crypto.deleted=true
+        const saved_crypto=this.cryptoRepository.save(crypto)
+
     }
 }

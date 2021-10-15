@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { AssignBlockchainToCryptoDto } from "../dto/assign-blockchain-to-crypto.dto";
 import { CreateBlockchainDto } from "../dto/create.blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
@@ -21,8 +21,8 @@ export class BlockchainController{
         return await this.blockchainService.getAllBlockchain()
     }
 
-    @Delete('delete')
-    async deleteBlockchain(@Body('id') id:string):Promise<any>
+    @Delete('delete/:id')
+    async deleteBlockchain(@Param('id') id:string):Promise<any>
     {
         return await this.blockchainService.deleteBlockchain(id)
     }

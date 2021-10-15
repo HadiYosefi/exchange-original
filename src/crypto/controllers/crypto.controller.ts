@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign-crypto-to-crypto-appearance.dto";
 import { AssignCryptoToCryptoLimitDto } from "../dto/assign-crypto-to-crypto-limit.dto";
 import { AssignCryptoToCryptoPricingDto } from "../dto/assign-crypto-to-crypto-pricing.dto";
@@ -62,5 +62,11 @@ export class CryptoController{
     async assignCryptoToCryptoLimit(@Body() assignCryptoToCryptoLimitDto:AssignCryptoToCryptoLimitDto):Promise<any>
     {
         return await this.cryptoService.assignCryptoToCryptoLimit(assignCryptoToCryptoLimitDto)
+    }
+
+    @Delete('delete/:id')
+    async deleteCrypto(@Param('id') id:string):Promise<any>
+    {
+        return await this.cryptoService.deleteCrypto(id)
     }
 }

@@ -25,13 +25,14 @@ export class ArchService{
         return getAll
     }
 
-    async deleteArch(id:string):Promise<any>
+    async deleteArch(id:string):Promise<void>
     {
-        const findOne= await this.archRepository.findOne(id)
-        if (findOne) {
-        findOne.deleted=true
-            
-        }   
+        const arch=await this.archRepository.findOne({where:{id:id,deleted:false}})
+        if(!arch)
+        throw new BadRequestException('Arch not find or aleardy deleted')
+        arch.deleted=true
+        const saved_arch=this.archRepository.save(arch)
+        return 
     }
 
     async assignArchToBlockchain(assignArchToBlockchainDto:AssignArchToBlockchainDto):Promise<Arch>
