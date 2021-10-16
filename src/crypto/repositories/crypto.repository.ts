@@ -1,4 +1,5 @@
 import { ConflictException, Injectable } from "@nestjs/common";
+import { type } from "os";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateCryptoDto } from "../dto/create.crypto.dto";
 import {Crypto} from '../models/crypto.entity'
@@ -22,5 +23,7 @@ export class CryptoRepository extends Repository<Crypto>
         crypto.symbol=createCryptoDto.symbol.toUpperCase()
         const saved_crypto=this.save(crypto)
         return saved_crypto
+
+        
     }
 }
