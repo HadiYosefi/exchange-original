@@ -21,7 +21,7 @@ export class ArchService{
 
     async getAllArch():Promise<Arch[]>
     {
-        const getAll= await this.archRepository.find({where:{deleted:false}})
+        const getAll= await this.archRepository.find({where:{deleted:false},relations:['obj_blockchain']})
         return getAll
     }
 

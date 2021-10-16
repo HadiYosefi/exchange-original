@@ -32,7 +32,7 @@ export class CryptoService{
 
     async getAllCrypto():Promise<Crypto[]>
     {
-        return this.cryptoRepository.find({where:{deleted:false},relations:['obj_blockchain,obj_crypto_pricing,obj_crypto_appearance,obj_crypto_limit']})
+        return this.cryptoRepository.find({where:{deleted:false},relations:['obj_blockchain','obj_crypto_pricing','obj_crypto_appearance','obj_crypto_limit']})
     }
 
 
