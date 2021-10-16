@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { AssignBlockchainToCryptoDto } from "../dto/assign-blockchain-to-crypto.dto";
-import { CreateBlockchainDto } from "../dto/create.blockchain.dto";
+import { AssignBlockchainToCryptoDto } from "../dto/assign/assign-blockchain-to-crypto.dto";
+import { CreateBlockchainDto } from "../dto/create/create.blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
 import { BlockchainService } from "../services/blockchain.service";
 

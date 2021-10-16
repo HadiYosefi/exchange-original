@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
-import { CreateCryptoPricingDto } from "../dto/create.crypto.pricing.dto";
+import { CreateCryptoPricingDto } from "../dto/create/create.crypto.pricing.dto";
 import { CryptoPricing } from "../models/crypto-pricing.entity";
 @Injectable()
 @EntityRepository(CryptoPricing)

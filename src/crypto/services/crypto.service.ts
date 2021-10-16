@@ -1,17 +1,17 @@
 import { BadRequestException, ConflictException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateCryptoDto } from "../dto/create.crypto.dto";
+import { CreateCryptoDto } from "../dto/create/create.crypto.dto";
 import { CryptoRepository } from "../repositories/crypto.repository";
 import {Crypto} from '../models/crypto.entity'
-import { CreateCryptoAppearanceDto } from "../dto/create.crypto.appearance.dto";
+import { CreateCryptoAppearanceDto } from "../dto/create/create.crypto.appearance.dto";
 import { CryptoAppearanceRepository } from "../repositories/crypto-appearance.repository";
-import { CreateCryptoLimitDto } from "../dto/create.crypto.limit.dto";
+import { CreateCryptoLimitDto } from "../dto/create/create.crypto.limit.dto";
 import { CryptoLimitRepository } from "../repositories/crypto-limit.repository";
-import { CreateCryptoPricingDto } from "../dto/create.crypto.pricing.dto";
+import { CreateCryptoPricingDto } from "../dto/create/create.crypto.pricing.dto";
 import { CryptoPricingRepository } from "../repositories/crypto-pricing.repository";
-import { AssignCryptoToCryptoPricingDto } from "../dto/assign-crypto-to-crypto-pricing.dto";
-import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign-crypto-to-crypto-appearance.dto";
-import { AssignCryptoToCryptoLimitDto } from "../dto/assign-crypto-to-crypto-limit.dto";
+import { AssignCryptoToCryptoPricingDto } from "../dto/assign/assign-crypto-to-crypto-pricing.dto";
+import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign/assign-crypto-to-crypto-appearance.dto";
+import { AssignCryptoToCryptoLimitDto } from "../dto/assign/assign-crypto-to-crypto-limit.dto";
 import { Like } from "typeorm";
 
 @Injectable()

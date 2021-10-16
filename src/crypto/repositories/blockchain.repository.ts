@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
-import { CreateBlockchainDto } from "../dto/create.blockchain.dto";
+import { CreateBlockchainDto } from "../dto/create/create.blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
 
 @Injectable()

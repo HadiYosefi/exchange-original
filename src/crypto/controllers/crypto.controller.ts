@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign-crypto-to-crypto-appearance.dto";
-import { AssignCryptoToCryptoLimitDto } from "../dto/assign-crypto-to-crypto-limit.dto";
-import { AssignCryptoToCryptoPricingDto } from "../dto/assign-crypto-to-crypto-pricing.dto";
-import { CreateCryptoAppearanceDto } from "../dto/create.crypto.appearance.dto";
-import { CreateCryptoDto } from "../dto/create.crypto.dto";
-import { CreateCryptoLimitDto } from "../dto/create.crypto.limit.dto";
-import { CreateCryptoPricingDto } from "../dto/create.crypto.pricing.dto";
+import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign/assign-crypto-to-crypto-appearance.dto";
+import { AssignCryptoToCryptoLimitDto } from "../dto/assign/assign-crypto-to-crypto-limit.dto";
+import { AssignCryptoToCryptoPricingDto } from "../dto/assign/assign-crypto-to-crypto-pricing.dto";
+import { CreateCryptoAppearanceDto } from "../dto/create/create.crypto.appearance.dto";
+import { CreateCryptoDto } from "../dto/create/create.crypto.dto";
+import { CreateCryptoLimitDto } from "../dto/create/create.crypto.limit.dto";
+import { CreateCryptoPricingDto } from "../dto/create/create.crypto.pricing.dto";
 import { CryptoService } from "../services/crypto.service";
 
 @Controller('crypto')
@@ -17,6 +17,7 @@ export class CryptoController{
     @Post('create')
     async createCrypto(@Body() createCryptoDto:CreateCryptoDto):Promise<any>
     {
+
         return await this.cryptoService.createCrypto(createCryptoDto)
     }
 

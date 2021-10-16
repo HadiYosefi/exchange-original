@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
-import { CreateArchDto } from "../dto/create.arch.dto";
+import { CreateArchDto } from "../dto/create/create.arch.dto";
 import { Arch } from "../models/arch.entity";
 
 @Injectable()

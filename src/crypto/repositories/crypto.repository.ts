@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from "@nestjs/common";
 import { type } from "os";
 import { EntityRepository, Repository } from "typeorm";
-import { CreateCryptoDto } from "../dto/create.crypto.dto";
+import { CreateCryptoDto } from "../dto/create/create.crypto.dto";
 import {Crypto} from '../models/crypto.entity'
 
 @Injectable()

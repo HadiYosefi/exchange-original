@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
-import { CreateCryptoAppearanceDto } from "../dto/create.crypto.appearance.dto";
+import { CreateCryptoAppearanceDto } from "../dto/create/create.crypto.appearance.dto";
 import { CryptoAppearance } from "../models/crypto-appearance.entity";
 @Injectable()
 @EntityRepository(CryptoAppearance)

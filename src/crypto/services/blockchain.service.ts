@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Like, Repository } from "typeorm";
-import { AssignBlockchainToCryptoDto } from "../dto/assign-blockchain-to-crypto.dto";
-import { CreateBlockchainDto } from "../dto/create.blockchain.dto";
+import { AssignBlockchainToCryptoDto } from "../dto/assign/assign-blockchain-to-crypto.dto";
+import { CreateBlockchainDto } from "../dto/create/create.blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
 import { BlockchainRepository } from "../repositories/blockchain.repository";
 import {Crypto} from '../models/crypto.entity'

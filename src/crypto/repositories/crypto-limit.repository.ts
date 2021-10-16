@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
-import { CreateCryptoLimitDto } from "../dto/create.crypto.limit.dto";
+import { CreateCryptoLimitDto } from "../dto/create/create.crypto.limit.dto";
 import { CryptoLimit } from "../models/crypto-limit.entity";
 @Injectable()
 @EntityRepository(CryptoLimit)

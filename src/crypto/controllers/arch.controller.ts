@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { AssignArchToBlockchainDto } from "../dto/assign-arch-to-blockchain.dto";
-import { CreateArchDto } from "../dto/create.arch.dto";
+import { AssignArchToBlockchainDto } from "../dto/assign/assign-arch-to-blockchain.dto";
+import { CreateArchDto } from "../dto/create/create.arch.dto";
 import { Arch } from "../models/arch.entity";
 import { ArchService } from "../services/arch.service";
 
