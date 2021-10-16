@@ -11,12 +11,14 @@ export class ArchRepository extends Repository<Arch>{
     async createArch(createArchDto:CreateArchDto):Promise<Arch>
     {
         
-        console.log(camelCase('mamadjebad'));
+        
+        
         
         if (await this.findOne({where:{name:createArchDto.name,deleted:false}}))
         throw new ConflictException('The Architecture aleardy exist...!') 
         const arch=new Arch()
-        arch.name=createArchDto.name
+        
+        arch.name=camelCase(createArchDto.name)
         const saved_arch=this.save(arch)
         return saved_arch
     }

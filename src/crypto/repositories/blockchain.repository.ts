@@ -1,4 +1,5 @@
 import { ConflictException, Injectable } from "@nestjs/common";
+import camelcase from "camelcase";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateBlockchainDto } from "../dto/create/create.blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
@@ -11,7 +12,7 @@ export class BlockchainRepository extends Repository<Blockchain>{
     {   if(await this.findOne({where:{name:createBlockchainDto.name,symbol:createBlockchainDto.symbol,deleted:false}}))
         throw new ConflictException('Blockchain Aleardy exist...!')
         const blockchain=new Blockchain()
-        blockchain.name=createBlockchainDto.name
+        blockchain.name=camelcase( createBlockchainDto.name)
         blockchain.symbol=createBlockchainDto.symbol.toUpperCase()
         blockchain.crypto=createBlockchainDto.crypto
         blockchain.icon=createBlockchainDto.icon

@@ -1,4 +1,5 @@
 import { ConflictException, Injectable } from "@nestjs/common";
+import camelcase from "camelcase";
 import { type } from "os";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateCryptoDto } from "../dto/create/create.crypto.dto";
@@ -16,7 +17,7 @@ export class CryptoRepository extends Repository<Crypto>
         throw new ConflictException('This Crypto Aleardy Exist')
 
         const crypto=new Crypto()
-        crypto.name=createCryptoDto.name
+        crypto.name=camelcase( createCryptoDto.name)
         crypto.price=createCryptoDto.price
         crypto.icon=createCryptoDto.icon
         crypto.slug=createCryptoDto.slug
