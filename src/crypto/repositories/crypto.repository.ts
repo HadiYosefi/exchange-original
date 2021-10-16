@@ -24,7 +24,5 @@ export class CryptoRepository extends Repository<Crypto>
         crypto.symbol=createCryptoDto.symbol.toUpperCase()
         const saved_crypto=this.save(crypto)
         return saved_crypto
-
-        
     }
 }
