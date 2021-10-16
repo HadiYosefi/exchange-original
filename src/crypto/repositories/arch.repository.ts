@@ -2,6 +2,7 @@ import { ConflictException, Injectable, NotFoundException } from "@nestjs/common
 import { EntityRepository, Repository } from "typeorm";
 import { CreateArchDto } from "../dto/create/create.arch.dto";
 import { Arch } from "../models/arch.entity";
+const camelCase=require('camelcase')
 
 @Injectable()
 @EntityRepository(Arch)
@@ -9,6 +10,9 @@ export class ArchRepository extends Repository<Arch>{
 
     async createArch(createArchDto:CreateArchDto):Promise<Arch>
     {
+        
+        console.log(camelCase('mamadjebad'));
+        
         if (await this.findOne({where:{name:createArchDto.name,deleted:false}}))
         throw new ConflictException('The Architecture aleardy exist...!') 
         const arch=new Arch()
