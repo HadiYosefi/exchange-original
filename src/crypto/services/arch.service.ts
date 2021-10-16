@@ -60,4 +60,8 @@ export class ArchService{
         return arch
 
     }
+
+    async updateArchName(archId:string,updateArchNameDto:CreateArchDto):Promise<Arch>{
+        return await this.archRepository.updateName(archId,updateArchNameDto)
+    }
 }

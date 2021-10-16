@@ -18,6 +18,8 @@ export class BlockchainController{
     @Get('getall')
     async getAllBlockchain():Promise<any>
     {
+        
+        
         return await this.blockchainService.getAllBlockchain()
     }
 
@@ -39,4 +41,5 @@ export class BlockchainController{
         return await this.blockchainService.findByNameOrSymbol(param)
     }
 
+    
 }

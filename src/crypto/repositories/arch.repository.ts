@@ -23,18 +23,16 @@ export class ArchRepository extends Repository<Arch>{
         return saved_arch
     }
 
-    // async deleteArch(id:string):Promise<any>
-    // {
-    //     console.log(id);
-    //     const findArch= await this.findOne(id)
-    //     if (findArch)
-    //     {
-    //        findArch.deleted=true
-    //     } else {
-    //         throw new NotFoundException('There is no arch with this id...!')
-    //     }
-        
-        
-    // }
+    async updateName( archId:string,updateNameDto:CreateArchDto):Promise<Arch>{
+        const arch=await this.findOne({id:archId})
+        if(!arch)
+            throw new NotFoundException()
+        arch.name=updateNameDto.name
+        const saved_arch=await this.save(arch)
+        return saved_arch
+
+    }
+
+    
     
 }

@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { AssignArchToBlockchainDto } from "../dto/assign/assign-arch-to-blockchain.dto";
 import { CreateArchDto } from "../dto/create/create.arch.dto";
 import { Arch } from "../models/arch.entity";
 import { ArchService } from "../services/arch.service";
-
+@ApiTags('Arch')
 @Controller('arch')
 export class ArchController{
     constructor (private archService:ArchService)
@@ -42,4 +43,10 @@ export class ArchController{
         return await this.archService.findWithName(Param)
     }
 
+    @Patch('updateName/:id')
+    async updateName(@Param('id') archId:string,@Body() updateArchDto:CreateArchDto):Promise<any>{
+        return await this.archService.updateArchName(archId,updateArchDto)
+    }
+
+    
 }
