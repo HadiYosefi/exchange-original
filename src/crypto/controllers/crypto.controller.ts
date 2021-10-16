@@ -69,4 +69,10 @@ export class CryptoController{
     {
         return await this.cryptoService.deleteCrypto(id)
     }
+
+    @Get('findone/:param')
+    async findByNameOrSymbol(@Param('param') param:string):Promise<any>
+    {
+        return await this.cryptoService.findByNameOrSymbol(param)
+    }
 }

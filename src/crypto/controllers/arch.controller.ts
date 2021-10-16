@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { AssignArchToBlockchainDto } from "../dto/assign-arch-to-blockchain.dto";
 import { CreateArchDto } from "../dto/create.arch.dto";
+import { Arch } from "../models/arch.entity";
 import { ArchService } from "../services/arch.service";
 
 @Controller('arch')
@@ -34,4 +35,11 @@ export class ArchController{
     {
         return await this.archService.assignArchToBlockchain(assignArchToBlockchainDto)
     }
+
+    @Get('findone/:param')
+    async findWithName(@Param('param') Param:string):Promise<any>
+    {
+        return await this.archService.findWithName(Param)
+    }
+
 }

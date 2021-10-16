@@ -33,4 +33,10 @@ export class BlockchainController{
         return await this.blockchainService.assignBlockchainToCrypto(assignBlockchainToCryptoDto)
     }
 
+    @Get('findone/:param')
+    async findByNameOrSymbol(@Param('param') param:string):Promise<any>
+    {
+        return await this.blockchainService.findByNameOrSymbol(param)
+    }
+
 }

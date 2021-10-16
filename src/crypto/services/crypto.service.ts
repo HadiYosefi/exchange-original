@@ -12,6 +12,7 @@ import { CryptoPricingRepository } from "../repositories/crypto-pricing.reposito
 import { AssignCryptoToCryptoPricingDto } from "../dto/assign-crypto-to-crypto-pricing.dto";
 import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign-crypto-to-crypto-appearance.dto";
 import { AssignCryptoToCryptoLimitDto } from "../dto/assign-crypto-to-crypto-limit.dto";
+import { Like } from "typeorm";
 
 @Injectable()
 export class CryptoService{
@@ -106,5 +107,18 @@ export class CryptoService{
         crypto.deleted=true
         const saved_crypto=this.cryptoRepository.save(crypto)
 
+    }
+
+    async findByNameOrSymbol(param:string):Promise<Crypto[]>
+    {
+        const crypto=await this.cryptoRepository.find(
+            {where:[{name:Like(`%${param}%`)},
+                    {symbol:Like(`%${param.toUpperCase()}%`)}
+        
+        ]}
+        )
+        if(!crypto)
+        throw new BadRequestException(`There is no crypto for ${param} `)
+        return crypto
     }
 }

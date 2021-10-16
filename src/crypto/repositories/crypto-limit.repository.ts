@@ -17,5 +17,6 @@ export class CryptoLimitRepository extends Repository<CryptoLimit>{
         cryptoLimit.min_withdraw=createCryptoLimitDto.min_withdraw
         const saved_limit=this.save(cryptoLimit)
         return saved_limit
+        
     }
 }

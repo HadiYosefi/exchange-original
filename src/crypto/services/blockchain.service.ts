@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { AssignBlockchainToCryptoDto } from "../dto/assign-blockchain-to-crypto.dto";
 import { CreateBlockchainDto } from "../dto/create.blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
@@ -49,5 +49,19 @@ export class BlockchainService{
         
         return savedBlockchain
 
+    }
+
+    async findByNameOrSymbol(param:string):Promise<Blockchain[]>
+    {
+        const blockchain=await this.blockchainRepository.find(
+            {where:[{name:Like(`%${param}%`)},
+                    {symbol:Like(`%${param.toUpperCase()}%`)}
+        ]},
+            
+            
+        )
+        if(!blockchain)
+        throw new BadRequestException('There is no blockchain')
+        return blockchain
     }
 }

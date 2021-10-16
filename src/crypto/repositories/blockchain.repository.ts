@@ -12,7 +12,7 @@ export class BlockchainRepository extends Repository<Blockchain>{
         throw new ConflictException('Blockchain Aleardy exist...!')
         const blockchain=new Blockchain()
         blockchain.name=createBlockchainDto.name
-        blockchain.symbol=createBlockchainDto.symbol
+        blockchain.symbol=createBlockchainDto.symbol.toUpperCase()
         blockchain.crypto=createBlockchainDto.crypto
         blockchain.icon=createBlockchainDto.icon
         const saved_blockchain=this.save(blockchain)

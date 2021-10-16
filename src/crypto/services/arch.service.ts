@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Like } from "typeorm";
 import {  AssignArchToBlockchainDto } from "../dto/assign-arch-to-blockchain.dto";
 import { CreateArchDto } from "../dto/create.arch.dto";
 import { Arch } from "../models/arch.entity";
@@ -49,5 +50,14 @@ export class ArchService{
         const savedArch= await this.archRepository.save(arch)
         return  savedArch
     }
-    
+
+    async findWithName(param:string):Promise<Arch[]>
+    {
+        const arch=await this.archRepository.find({where:{name:Like(`%${param}%`)}})
+        if(!arch)
+        throw new BadRequestException(`There is no arch for ${param} `)
+
+        return arch
+
+    }
 }
