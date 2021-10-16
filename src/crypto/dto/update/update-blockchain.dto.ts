@@ -1,5 +1,10 @@
+import { ApiProperty } from "@nestjs/swagger"
+
 export class UpdateBlockchainDto{
+    @ApiProperty()
     name:string
-    arch_id:string
-    crypto_id:string
+    @ApiProperty()
+    symbol:string
+    @ApiProperty()
+    icon:string
 }

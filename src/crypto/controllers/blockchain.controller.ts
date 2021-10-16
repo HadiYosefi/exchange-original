@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { AssignBlockchainToCryptoDto } from "../dto/assign/assign-blockchain-to-crypto.dto";
 import { CreateBlockchainDto } from "../dto/create/create.blockchain.dto";
+import { UpdateBlockchainDto } from "../dto/update/update-blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
 import { BlockchainService } from "../services/blockchain.service";
-
+@ApiTags('Blockchain')
 @Controller('blockchain')
 export class BlockchainController{
     constructor(private blockchainService:BlockchainService)
@@ -41,5 +43,10 @@ export class BlockchainController{
         return await this.blockchainService.findByNameOrSymbol(param)
     }
 
-    
+    @Patch('update/:id')
+    async updateBlockchain(@Param('id') blockchain_id:string, @Body() updateBlockchainDto:UpdateBlockchainDto):Promise<any>
+    {
+        return await this.blockchainService.updateBlockchain(blockchain_id,updateBlockchainDto)
+    }
+
 }

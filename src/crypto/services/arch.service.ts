@@ -15,7 +15,7 @@ export class ArchService{
         )
     {}
 
-    async createArch(createArchDto:CreateArchDto):Promise<any>
+    async createArch(createArchDto:CreateArchDto):Promise<Arch>
     {
         return await this.archRepository.createArch(createArchDto)
     }

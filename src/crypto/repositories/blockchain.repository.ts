@@ -11,12 +11,7 @@ import { CryptoRepository } from "./crypto.repository";
 @Injectable()
 @EntityRepository(Blockchain)
 export class BlockchainRepository extends Repository<Blockchain>{
-    constructor(@InjectRepository(ArchRepository) private archRepository:ArchRepository,
-    @InjectRepository(CryptoRepository) private cryptoRepository:CryptoRepository
-    )
-    {
-        super()
-    }
+    
 
     async createBlockchain(createBlockchainDto:CreateBlockchainDto):Promise<Blockchain>
     {   if(await this.findOne({where:{name:createBlockchainDto.name,symbol:createBlockchainDto.symbol,deleted:false}}))
@@ -30,21 +25,15 @@ export class BlockchainRepository extends Repository<Blockchain>{
     return saved_blockchain
     }
 
-    async UpdateBlockchain(blockchain_id:string,updateBlockchainDto:UpdateBlockchainDto):Promise<Blockchain>
-    {   const arch=await this.archRepository.findOne({where:{id:updateBlockchainDto.arch_id}})
-        if(!arch)
-        throw new NotFoundException('There is no arch')
-        const crypto=await this.cryptoRepository.findOne({where:{id:updateBlockchainDto.crypto_id}})
-        if(!crypto)
-        throw new NotFoundException('there is no crypto')
+    async updateBlockchain(blockchain_id:string,updateBlockchainDto:UpdateBlockchainDto):Promise<Blockchain>
+    {   
         const blockchain=await this.findOne({where:{id:blockchain_id,deleted:false}})
         if(!blockchain)
         throw new NotFoundException(`There is no blockchain for id  ${blockchain_id}`)
         blockchain.name=updateBlockchainDto.name
-        blockchain.obj_arch=arch
-        
-
-        blockchain.obj_arch
-        return
+        blockchain.icon=updateBlockchainDto.icon
+        blockchain.symbol=updateBlockchainDto.symbol
+        const saved_blockchain=this.save(blockchain)
+        return  saved_blockchain
     }
 }

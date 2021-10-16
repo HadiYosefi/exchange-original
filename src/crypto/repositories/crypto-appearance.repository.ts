@@ -1,6 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateCryptoAppearanceDto } from "../dto/create/create.crypto.appearance.dto";
+import { UpdateCryptoAppearanceDto } from "../dto/update/update-crypto-appearance.dto";
 import { CryptoAppearance } from "../models/crypto-appearance.entity";
 @Injectable()
 @EntityRepository(CryptoAppearance)
@@ -18,4 +19,16 @@ export class CryptoAppearanceRepository extends Repository<CryptoAppearance>{
         return saved_appearance
     }
     
+    async updateCryptoAppearance(crypto_appearance_id:string,updateCryptoAppearanceDto:UpdateCryptoAppearanceDto):Promise<CryptoAppearance>
+    {
+        const crypto_appearance=await this.findOne({where:{id:crypto_appearance_id}})
+        if(!crypto_appearance)
+        throw new NotFoundException('there is no crypto_appearance')
+        crypto_appearance.text_color=updateCryptoAppearanceDto.text_color
+        crypto_appearance.alternative_color=updateCryptoAppearanceDto.alternative_color
+        crypto_appearance.primary_color=updateCryptoAppearanceDto.primary_color
+        crypto_appearance.secondary_color=updateCryptoAppearanceDto.secondary_color
+        const saved_crypto_appearance=this.save(crypto_appearance)
+        return saved_crypto_appearance
+    }
 }

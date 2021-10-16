@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign/assign-crypto-to-crypto-appearance.dto";
 import { AssignCryptoToCryptoLimitDto } from "../dto/assign/assign-crypto-to-crypto-limit.dto";
 import { AssignCryptoToCryptoPricingDto } from "../dto/assign/assign-crypto-to-crypto-pricing.dto";
@@ -6,8 +7,13 @@ import { CreateCryptoAppearanceDto } from "../dto/create/create.crypto.appearanc
 import { CreateCryptoDto } from "../dto/create/create.crypto.dto";
 import { CreateCryptoLimitDto } from "../dto/create/create.crypto.limit.dto";
 import { CreateCryptoPricingDto } from "../dto/create/create.crypto.pricing.dto";
+import { UpdateCryptoLimitDto } from "../dto/update/update-crypto-limit.dto";
+import { UpdateCryptoAppearanceDto } from "../dto/update/update-crypto-appearance.dto";
+import { UpdateCryptoDto } from "../dto/update/update-crypto.dto";
+import { CryptoLimit } from "../models/crypto-limit.entity";
 import { CryptoService } from "../services/crypto.service";
-
+import { UpdateCryptoPricingDto } from "../dto/update/update-crypto-pricing.dto";
+@ApiTags('Crypto')
 @Controller('crypto')
 export class CryptoController{
 
@@ -76,4 +82,30 @@ export class CryptoController{
     {
         return await this.cryptoService.findByNameOrSymbol(param)
     }
+
+    @Patch('update/:id')
+    async updateCrypto(@Param('id') crypto_id:string, @Body() updateCryptoDto:UpdateCryptoDto):Promise<any>
+    {
+        return await this.cryptoService.updateCrypto(crypto_id,updateCryptoDto)
+    }
+
+    @Patch('update/appearance/:id')
+    async updateCryptoAppearance(@Param('id') crypto_appearance_id:string, @Body() updateCryptoAppearanceDto:UpdateCryptoAppearanceDto ):Promise<any>
+    {
+        return await this.cryptoService.updateCryptoAppearance(crypto_appearance_id,updateCryptoAppearanceDto)
+    }
+
+    @Patch('update/limit/:id')
+    async updateCryptoLimit(@Param('id') crypto_limit_id:string,@Body() updateCryptoLimitDto:UpdateCryptoLimitDto):Promise<any>
+    {
+        return await this.cryptoService.updateCryptoLimit(crypto_limit_id,updateCryptoLimitDto)
+    }
+
+    @Patch('update/pricing/:id')
+    async updateCryptoPricing(@Param('id') crypto_pricing_id:string,@Body() updateCryptoPricingDto:UpdateCryptoPricingDto):Promise<any>
+    {
+        return this.cryptoService.updateCryptoPricing(crypto_pricing_id,updateCryptoPricingDto)
+    }
+
+    
 }
