@@ -5,8 +5,6 @@ import { EntityRepository, Repository } from "typeorm";
 import { CreateBlockchainDto } from "../dto/create/create.blockchain.dto";
 import { UpdateBlockchainDto } from "../dto/update/update-blockchain.dto";
 import { Blockchain } from "../models/blockchain.entity";
-import { ArchRepository } from "./arch.repository";
-import { CryptoRepository } from "./crypto.repository";
 
 @Injectable()
 @EntityRepository(Blockchain)

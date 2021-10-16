@@ -3,9 +3,7 @@ import { Blockchain } from "./blockchain.entity";
 
 @Entity()
 export class Arch{
-    findOne(arg0: { where: { id: string; }; }) {
-        throw new Error("Method not implemented.");
-    }
+    
 
     @PrimaryGeneratedColumn('uuid')
     id:string

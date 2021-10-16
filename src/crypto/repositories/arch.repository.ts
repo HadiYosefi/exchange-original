@@ -19,7 +19,7 @@ export class ArchRepository extends Repository<Arch>{
     }
 
     async updateName(archId: string, updateNameDto: CreateArchDto): Promise<Arch> {
-        const arch = await this.findOne({ id: archId })
+        const arch = await this.findOne({ where:{id:archId}})
         if (!arch)
             throw new NotFoundException()
         arch.name = updateNameDto.name
