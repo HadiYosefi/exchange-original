@@ -7,6 +7,7 @@ import { Blockchain } from "../models/blockchain.entity";
 import { BlockchainRepository } from "../repositories/blockchain.repository";
 import {Crypto} from '../models/crypto.entity'
 import { CryptoRepository } from "../repositories/crypto.repository";
+import { UpdateBlockchainDto } from "../dto/update/update-blockchain.dto";
 
 @Injectable()
 export class BlockchainService{
@@ -16,7 +17,7 @@ export class BlockchainService{
     )
     {}
 
-    async createBlockchain(createBlockchainDto:CreateBlockchainDto):Promise<any>
+    async createBlockchain(createBlockchainDto:CreateBlockchainDto):Promise<Blockchain>
     {
         return await this.blockchainRepository.createBlockchain(createBlockchainDto)
     }
@@ -63,5 +64,10 @@ export class BlockchainService{
         if(!blockchain)
         throw new BadRequestException('There is no blockchain')
         return blockchain
+    }
+
+    async updateBlockchain(blockchain_id:string,updateBlockchainDto:UpdateBlockchainDto):Promise<Blockchain>
+    {
+        return await this.blockchainRepository.updateBlockchain(blockchain_id,updateBlockchainDto)
     }
 }

@@ -13,6 +13,13 @@ import { AssignCryptoToCryptoPricingDto } from "../dto/assign/assign-crypto-to-c
 import { AssignCryptoToCryptoAppearanceDto } from "../dto/assign/assign-crypto-to-crypto-appearance.dto";
 import { AssignCryptoToCryptoLimitDto } from "../dto/assign/assign-crypto-to-crypto-limit.dto";
 import { Like } from "typeorm";
+import { UpdateCryptoDto } from "../dto/update/update-crypto.dto";
+import { CryptoAppearance } from "../models/crypto-appearance.entity";
+import { UpdateCryptoAppearanceDto } from "../dto/update/update-crypto-appearance.dto";
+import { UpdateCryptoLimitDto } from "../dto/update/update-crypto-limit.dto";
+import { CryptoPricing } from "../models/crypto-pricing.entity";
+import { UpdateCryptoPricingDto } from "../dto/update/update-crypto-pricing.dto";
+import { CryptoLimit } from "../models/crypto-limit.entity";
 
 @Injectable()
 export class CryptoService{
@@ -25,7 +32,7 @@ export class CryptoService{
     )
     {}
 
-    async createCrypto(createCryptoDto:CreateCryptoDto):Promise<any>
+    async createCrypto(createCryptoDto:CreateCryptoDto):Promise<Crypto>
     {
         return await this.cryptoRepository.createCrypto(createCryptoDto)
     }
@@ -37,17 +44,17 @@ export class CryptoService{
     }
 
 
-    async CreateCryptoAppearance(createCryptoAppearanceDto:CreateCryptoAppearanceDto):Promise<any>
+    async CreateCryptoAppearance(createCryptoAppearanceDto:CreateCryptoAppearanceDto):Promise<CryptoAppearance>
     {
         return await this.cryptoAppearanceRepository.createCryptoAppearance(createCryptoAppearanceDto)
     }
 
-    async createCryptoLimit(createCryptoLimitDto:CreateCryptoLimitDto):Promise<any>
+    async createCryptoLimit(createCryptoLimitDto:CreateCryptoLimitDto):Promise<CryptoLimit>
     {
         return await this.cryptoLimitRepository.createCryptoLimit(createCryptoLimitDto)
     }
 
-    async createCryptoPricing(createCryptoPricingDto:CreateCryptoPricingDto):Promise<any>
+    async createCryptoPricing(createCryptoPricingDto:CreateCryptoPricingDto):Promise<CryptoPricing>
     {
         return await this.cryptoPricingRepository.createCryptoPricing(createCryptoPricingDto)
     }
@@ -121,4 +128,24 @@ export class CryptoService{
         throw new BadRequestException(`There is no crypto for ${param} `)
         return crypto
     }
+    async updateCrypto(crypto_id:string,updateCryptoDto:UpdateCryptoDto):Promise<Crypto>
+    {
+        return await this.cryptoRepository.updateCrypto(crypto_id,updateCryptoDto)
+    }
+
+    async updateCryptoAppearance(crypto_appearance_id:string, updateCryptoAppearanceDto:UpdateCryptoAppearanceDto):Promise<CryptoAppearance>
+    {
+        return await this.cryptoAppearanceRepository.updateCryptoAppearance(crypto_appearance_id,updateCryptoAppearanceDto)
+    }
+
+    async updateCryptoLimit(crypto_limit_id:string,updateCryptoLimitDto:UpdateCryptoLimitDto):Promise<any>
+    {
+        return await this.cryptoLimitRepository.updateCryptoLimit(crypto_limit_id,updateCryptoLimitDto)
+    }
+
+    async updateCryptoPricing(crypto_pricing_id:string,updateCryptoPricingDto:UpdateCryptoPricingDto):Promise<CryptoPricing>
+    {
+        return await this.cryptoPricingRepository.updateCryptoPricing(crypto_pricing_id,updateCryptoPricingDto)
+    }
+    
 }
