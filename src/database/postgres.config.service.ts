@@ -7,9 +7,9 @@ export class PostgresConfiguration implements TypeOrmOptionsFactory{
         const options:TypeOrmModuleOptions={
             type:'postgres',
             host:'localhost',
-            port:5433,
+            port:5432,
             username:'postgres',
-            password:'11538832',
+            password:'123456',
             database:'crypto-module-test',
             entities:[__dirname+'/../**/*.entity{.ts,.js}'],
             // entities:[Arch,Blockchain],

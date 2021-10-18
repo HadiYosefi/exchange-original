@@ -1,9 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Blockchain } from "./blockchain.entity";
 import { CryptoAppearance } from "./crypto-appearance.entity";
 import { CryptoLimit } from "./crypto-limit.entity";
 import { CryptoPricing } from "./crypto-pricing.entity";
 import { PricingType } from "./enum/price.type.enum";
+import { Rate } from "./rate.entity";
 
 @Entity()
 export class Crypto{
@@ -66,4 +67,7 @@ obj_crypto_appearance:CryptoAppearance
 @OneToOne(()=>CryptoLimit)
 @JoinColumn()
 obj_crypto_limit:CryptoLimit
+@OneToMany(()=>Rate,x=>x.obj_rate_crypto)
+@JoinColumn()
+obj_crypto_rate:Rate[]
 }
